@@ -120,7 +120,7 @@ function render() {
     $('#currentMode').textContent = selectedType === 'all' ? '知性題與情意題' : selectedType;
     updateCounts();
     if (!container.querySelector('.load-error')) {
-      container.innerHTML = '<div class="load-error"><h3>範文資料暫時無法載入</h3><p>請確認 data/essays.js 已與 index.html 一起上傳，且資料檔內容完整。</p></div>';
+      container.innerHTML = '<div class="load-error"><h3>範文資料暫時無法載入</h3><p>請確認 essays.js 已與 index.html 一起上傳，且資料檔內容完整。</p></div>';
     }
     return;
   }
@@ -174,14 +174,14 @@ async function init() {
       essays = window.COMPOSITION_ESSAYS;
     } else {
       // Retain a fallback for future environments that may supply JSON via HTTP.
-      const response = await fetch('data/essays.json');
+      const response = await fetch('essays.json');
       if (!response.ok) throw new Error('資料載入失敗');
       essays = await response.json();
     }
     updateCounts();
     render();
   } catch(err) {
-    $('#yearContent').innerHTML='<div class="load-error"><h3>範文資料暫時無法載入</h3><p>請確認 data/essays.js 已與 index.html 一起上傳，且檔案路徑正確。</p></div>';
+    $('#yearContent').innerHTML='<div class="load-error"><h3>範文資料暫時無法載入</h3><p>請確認 essays.js 已與 index.html 一起上傳，且檔案路徑正確。</p></div>';
   }
   $$('.year-tab').forEach(btn=>btn.addEventListener('click',()=>setYear(btn.dataset.year)));
   $$('.type-filter').forEach(btn=>btn.addEventListener('click',()=>setType(btn.dataset.type)));
